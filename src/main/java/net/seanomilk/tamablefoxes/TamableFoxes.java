@@ -352,8 +352,8 @@ public class TamableFoxes extends JavaPlugin implements Listener {
                     // Name process
                     player.sendMessage(ChatColor.RED + ChatColor.BOLD.toString() + "You just tamed a wild fox!");
                     player.sendMessage(ChatColor.RED + "What do you want to call it?");
-                    //player.sendMessage(ChatColor.GRAY + "Type a name in chat");
-                    //waitingName.put(player, tamableFox.getUniqueID());
+                    player.sendMessage(ChatColor.GRAY + "Type a name in chat");
+                    waitingName.put(player, tamableFox.getUniqueID());
                     tamableFox.setChosenName("???");
 
                     new AnvilGUI.Builder()
@@ -452,11 +452,11 @@ public class TamableFoxes extends JavaPlugin implements Listener {
         foxUUIDs.remove(entity.getUniqueId());
 
         if (configFoxes.get().getConfigurationSection("Foxes").contains(entity.getUniqueId().toString())) {
-            /*EntityTamableFox tamableFox = (EntityTamableFox) ((CraftEntity) entity).getHandle();
+            EntityTamableFox tamableFox = (EntityTamableFox) ((CraftEntity) entity).getHandle();
             if (tamableFox.getOwner() != null && tamableFox.getOwner() instanceof Player) {
                 Player owner = (Player) tamableFox.getOwner();
                 owner.sendMessage(getPrefix() + ChatColor.RED + tamableFox.getChosenName() + " was killed!");
-            }*/
+            }
 
             configFoxes.get().set("Foxes." + entity.getUniqueId(), null);
             fileManager.saveConfig("foxes.yml");
@@ -494,7 +494,7 @@ public class TamableFoxes extends JavaPlugin implements Listener {
     }
 
     public String getPrefix() {
-        //return ChatColor.translateAlternateColorCodes('&', (String) config.get("prefix"));
+        return ChatColor.translateAlternateColorCodes('&', (String) config.get("prefix"));
         return ChatColor.RED + "[Tamable Foxes] ";
     }
 
